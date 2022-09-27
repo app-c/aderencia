@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438939044421",
+    "project_id": "aderencia-13c86",
+    "storage_bucket": "aderencia-13c86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438939044421:android:a49de35e45f5689824312c",
+        "android_client_info": {
+          "package_name": "com.aderencia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438939044421-sqke21u5npoqg23pohnciv6vpvs8fdor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7HcI6DzCq58_i8C1EyyE6qT-v2DGJLjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438939044421-sqke21u5npoqg23pohnciv6vpvs8fdor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
