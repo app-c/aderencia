@@ -33,6 +33,7 @@ export function Home() {
   const w = Dimensions.get("window").width;
 
   const [data, setData] = React.useState<PropsAderenceia[]>([]);
+  const [check, setCheck] = React.useState(false);
 
   // !! NOTIFICATION
   const [expoPushToken, setExpoPushToken] = useState("");
@@ -40,27 +41,28 @@ export function Home() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  useEffect(() => {
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
+  // useEffect(() => {
+  //   notificationListener.current =
+  //     Notifications.addNotificationReceivedListener((notification) => {
+  //       setNotification(notification);
+  //     });
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
+  //   responseListener.current =
+  //     Notifications.addNotificationResponseReceivedListener((response) => {
+  //       console.log(response);
+  //     });
 
-    return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
+  //   return () => {
+  //     Notifications.removeNotificationSubscription(
+  //       notificationListener.current
+  //     );
+  //     Notifications.removeNotificationSubscription(responseListener.current);
+  //   };
+  // }, []);
+
+  console.log(notification);
 
   const PushAlertas = React.useCallback(async () => {
-    await Async.removeItem("ad");
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "You've got mail! 📬",
@@ -69,6 +71,7 @@ export function Home() {
       },
       trigger: { seconds: 2 },
     });
+    await Async.removeItem("ad");
   }, []);
 
   const loadDados = React.useCallback(async () => {
@@ -89,7 +92,7 @@ export function Home() {
   useFocusEffect(
     useCallback(() => {
       loadDados();
-    }, [loadDados, data])
+    }, [check])
   );
 
   const handleCheck = React.useCallback(
@@ -106,8 +109,9 @@ export function Home() {
       data[adIndex] = dados;
 
       await Async.setItem("ad", JSON.stringify(data));
+      setCheck(!check);
     },
-    [data]
+    [check, data]
   );
 
   return (
